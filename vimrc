@@ -1,5 +1,6 @@
 " Thanks to Steve Losh's 'Learn Vimscript the Hard Way'
 
+" Basic settings ---------------------- {{{
 syntax on
 colorscheme desert
 filetype plugin on
@@ -11,21 +12,30 @@ set numberwidth=4
 set wrap
 set shiftround
 set matchtime=4
+set foldlevel=2
+autocmd BufNewFile * :write
+" }}}
 
-" mapleader
+" Basic Bindings/Mappings ---------------------- {{{
+" Map Leaders ---------------------- {{{
+" mapleader 
 let mapleader = " "
 
 " localmapleader
 let maplocalleader = "\\"
+" }}}
 
-" Move current line up one line 
-noremap <leader>- ddp
-
-" Move current line down one line 
-noremap <leader>_ kddpk
-
+" Insert Mode Bindings ---------------------- {{{
 " Capitalize word in insert mode
 inoremap <leader><c-u> <esc>viwUea
+" }}}
+
+" Normal Mode Bindings ---------------------- {{{
+" Move current line down one line 
+nnoremap <leader>- ddp
+
+" Move current line up one line 
+nnoremap <leader>_ kddpk
 
 " Capitalize word in normal mode
 nnoremap <leader><c-u> gUaw
@@ -36,21 +46,39 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Easily source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" iabbrevs for commonly mistyped words
-iabbrev adn and
-iabbrev waht what
-iabbrev tehn then
-
 " Insert quotation marks around a word
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+" }}}
 
+" Visual Mode Bindings ---------------------- {{{
 " Insert quotation marks around a visual selection
 vnoremap <leader>" A"<esc>`<i"<esc>
 vnoremap <leader>' A'<esc>`<i'<esc>
+"}}}
 
-autocmd BufNewFile * :write
+" Operator Pending Mode Bindings ---------------------- {{{
+" Operate on nearest front parentheses
+onoremap in( :<c-u>normal! f(vi(<cr>
 
+" Operate on nearest back parentheses
+onoremap il) :<c-u>normal! F)vi(<cr>
+
+" Operate on nearest front brackets
+onoremap in{ :<c-u>normal! f{vi{<cr>
+
+" Operate on nearest back brackets
+onoremap il} :<c-u>normal! F}vi{<cr>
+" }}}
+" }}}
+
+" iabbrevs for commonly mistyped words ---------------------- {{{
+iabbrev adn and
+iabbrev waht what
+iabbrev tehn then
+" }}}
+
+" FileType-specific Settings ---------------------- {{{
 " C-specific auto commands
 augroup filetype_c
     autocmd!
@@ -126,18 +154,9 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
+" }}}
 
-
-" Operate on nearest front parentheses
-onoremap in( :<c-u>normal! f(vi(<cr>
-
-" Operate on nearest back parentheses
-onoremap il) :<c-u>normal! F)vi(<cr>
-
-" Operate on nearest front brackets
-onoremap in{ :<c-u>normal! f{vi{<cr>
-
-" Operate on nearest back brackets
-onoremap il} :<c-u>normal! F}vi{<cr>
-
+" Status Line {{{
+set laststatus=2
 set statusline=%.20F\ -\ FileType:\ %y\ \|\ Current:\ %04l\ Total:\ %04L
+"}}}
