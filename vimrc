@@ -84,6 +84,9 @@ augroup filetype_c
     autocmd!
     " <localleader>-c comments out code
     autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
+
+	" <localleader>-c in visual mode comments out a block
+	autocmd FileType c vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
     
     " Typing iff becomes if()
     autocmd FileType c iabbrev <buffer> iff if ()<left>
@@ -111,6 +114,8 @@ augroup filetype_javascript
 
     " Typing iff becomes if()
     autocmd FileType javascript iabbrev <buffer> iff if ()<left>
+
+	autocmd FileType javascript vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
     
     " Typing ret becomes return ;
     autocmd FileType javascript iabbrev <buffer> ret return;<left>
