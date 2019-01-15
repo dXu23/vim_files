@@ -5,6 +5,8 @@ syntax on
 colorscheme desert
 filetype plugin on
 set tabstop=4
+set incsearch
+set hlsearch
 set softtabstop=4
 set shiftwidth=4
 set number relativenumber
@@ -12,7 +14,7 @@ set numberwidth=4
 set wrap
 set shiftround
 set matchtime=4
-set foldlevel=2
+set foldlevel=0
 autocmd BufNewFile * :write
 " }}}
 
@@ -82,6 +84,7 @@ iabbrev tehn then
 " C-specific auto commands
 augroup filetype_c
     autocmd!
+
     " <localleader>-c comments out code
     autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
 
@@ -93,6 +96,7 @@ augroup filetype_c
     
     " Typing ret becomes return ;
     autocmd FileType c iabbrev <buffer> ret return;<left>
+
 augroup END
 
 
@@ -151,6 +155,9 @@ augroup filetype_python
     
     " Typing ret becomes return ;
     autocmd FileType python iabbrev <buffer> ret return
+
+	au BufReadPre * setlocal foldmethod=indent
+	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup END
 
 " Vimscript file settings ---------------------- {{{
@@ -165,3 +172,4 @@ augroup END
 set laststatus=2
 set statusline=%.20F\ -\ FileType:\ %y\ \|\ Current:\ %04l\ Total:\ %04L
 "}}}
+set tags=tags
