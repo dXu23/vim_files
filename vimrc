@@ -9,12 +9,14 @@ set incsearch
 set hlsearch
 set softtabstop=4
 set shiftwidth=4
+set smartindent
 set number relativenumber
 set numberwidth=4
 set wrap
 set shiftround
 set matchtime=4
 set foldlevel=0
+set backspace=2
 autocmd BufNewFile * :write
 " }}}
 
