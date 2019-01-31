@@ -10,6 +10,7 @@ set hlsearch
 set softtabstop=4
 set shiftwidth=4
 set smartindent
+set autoindent
 set number relativenumber
 set numberwidth=4
 set wrap
@@ -86,6 +87,7 @@ iabbrev tehn then
 " C-specific auto commands
 augroup filetype_c
     autocmd!
+	set cindent
 
     " <localleader>-c comments out code
     autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
