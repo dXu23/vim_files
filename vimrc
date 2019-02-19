@@ -16,7 +16,7 @@ set numberwidth=4
 set wrap
 set shiftround
 set matchtime=4
-set foldlevel=0
+" set foldlevel=0
 set backspace=2
 autocmd BufNewFile * :write
 " }}}
@@ -111,6 +111,9 @@ augroup filetype_html
 	autocmd FileType html set tabstop=2
 	autocmd FileType html set softtabstop=2
 	autocmd FileType html set shiftwidth=2
+	autocmd FileType html set smartindent
+	autocmd FileType html set autoindent
+
 augroup filetype_html
 
 
@@ -160,8 +163,8 @@ augroup filetype_python
     " Typing ret becomes return ;
     autocmd FileType python iabbrev <buffer> ret return
 
-	au BufReadPre * setlocal foldmethod=indent
-	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+	" au BufReadPre * setlocal foldmethod=indent
+	" au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup END
 
 " Vimscript file settings ---------------------- {{{
