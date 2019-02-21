@@ -101,6 +101,23 @@ augroup filetype_c
 
 augroup END
 
+augroup filetype_arduino
+    autocmd!
+
+    " <localleader>-c comments out code
+    autocmd FileType arduino nnoremap <buffer> <localleader>c I// <esc>
+
+	" <localleader>-c in visual mode comments out a block
+	autocmd FileType arduino vnoremap <buffer> <localleader>c A<cr>*/<esc>'<O/*<esc>
+	" A */<esc>'<i/* <esc>
+    
+    " Typing iff becomes if()
+    autocmd FileType arduino iabbrev <buffer> iff if ()<left>
+    
+    " Typing ret becomes return ;
+    autocmd FileType arduino iabbrev <buffer> ret return;<left>
+
+augroup END
 
 " HTML-specific auto commands
 augroup filetype_html
