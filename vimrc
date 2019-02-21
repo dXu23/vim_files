@@ -155,6 +155,12 @@ augroup filetype_latex
     autocmd!
     " <localleader>-c comments out code
     autocmd FileType latex nnoremap <buffer> <localleader>c I% <esc>
+
+	autocmd FileType latex set tabstop=2
+	autocmd FileType latex set softtabstop=2
+	autocmd FileType latex set shiftwidth=2
+	autocmd FileType latex set smartindent
+	autocmd FileType latex set autoindent
 augroup END
 
 
