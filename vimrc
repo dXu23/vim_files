@@ -24,7 +24,7 @@ set numberwidth=4
 set wrap
 set shiftround
 set matchtime=4
-set foldlevel=0
+" set foldlevel=0
 set backspace=2
 autocmd BufNewFile * :write
 if has ("autocmd")
@@ -122,14 +122,40 @@ augroup filetype_c
 
 augroup END
 
+augroup filetype_arduino
+    autocmd!
+
+    " <localleader>-c comments out code
+    autocmd FileType arduino nnoremap <buffer> <localleader>c I// <esc>
+
+	" <localleader>-c in visual mode comments out a block
+	autocmd FileType arduino vnoremap <buffer> <localleader>c A<cr>*/<esc>'<O/*<esc>
+	" A */<esc>'<i/* <esc>
+    
+    " Typing iff becomes if()
+    autocmd FileType arduino iabbrev <buffer> iff if ()<left>
+    
+    " Typing ret becomes return ;
+    autocmd FileType arduino iabbrev <buffer> ret return;<left>
+
+augroup END
 
 " HTML-specific auto commands
 augroup filetype_html
     autocmd!
 
+<<<<<<< HEAD
     autocmd FileType html set tabstop=2
     autocmd FileType html set softtabstop=2
     autocmd FileType html set shiftwidth=2
+=======
+	autocmd FileType html set tabstop=2
+	autocmd FileType html set softtabstop=2
+	autocmd FileType html set shiftwidth=2
+	autocmd FileType html set smartindent
+	autocmd FileType html set autoindent
+
+>>>>>>> 63b7788b377861ae9befdbb2b3e127d856ed1653
 augroup filetype_html
 
 
@@ -154,6 +180,12 @@ augroup filetype_latex
     autocmd!
     " <localleader>-c comments out code
     autocmd FileType latex nnoremap <buffer> <localleader>c I% <esc>
+
+	autocmd FileType latex set tabstop=2
+	autocmd FileType latex set softtabstop=2
+	autocmd FileType latex set shiftwidth=2
+	autocmd FileType latex set smartindent
+	autocmd FileType latex set autoindent
 augroup END
 
 
@@ -179,8 +211,13 @@ augroup filetype_python
     " Typing ret becomes return ;
     autocmd FileType python iabbrev <buffer> ret return
 
+<<<<<<< HEAD
     au BufReadPre * setlocal foldmethod=indent
     au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+=======
+	" au BufReadPre * setlocal foldmethod=indent
+	" au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+>>>>>>> 63b7788b377861ae9befdbb2b3e127d856ed1653
 augroup END
 
 " Vimscript file settings ---------------------- {{{
