@@ -1,16 +1,24 @@
 " Thanks to Steve Losh's 'Learn Vimscript the Hard Way'
 
 " Basic settings ---------------------- {{{
+
 syntax on
 colorscheme desert
 filetype plugin on
-set tabstop=4
+
+" Search options
 set incsearch
 set hlsearch
-set softtabstop=4
+
+" Tab options
+set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 set smartindent
 set autoindent
+set expandtab
+
+" Line options
 set number relativenumber
 set numberwidth=4
 set wrap
@@ -19,6 +27,17 @@ set matchtime=4
 set foldlevel=0
 set backspace=2
 autocmd BufNewFile * :write
+if has ("autocmd")
+    " Thanks to
+    " https://www.reddit.com/r/vim/comments/4ttz0c/tabs_or_spaces/
+    autocmd colorScheme * highlight ExtraWhiteSpace ctermbg=red guibg=red
+endif
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /[^\t]\t/
+
+" make the whitespace characters more visible!
+set listchars=tab:»·,trail:·,precedes:<,extends:>
+set list
 " }}}
 
 " Basic Bindings/Mappings ---------------------- {{{
@@ -87,14 +106,14 @@ iabbrev tehn then
 " C-specific auto commands
 augroup filetype_c
     autocmd!
-	set cindent
+    set cindent
 
     " <localleader>-c comments out code
     autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
 
-	" <localleader>-c in visual mode comments out a block
-	autocmd FileType c vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
-    
+    " <localleader>-c in visual mode comments out a block
+    autocmd FileType c vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
+
     " Typing iff becomes if()
     autocmd FileType c iabbrev <buffer> iff if ()<left>
     
@@ -106,11 +125,11 @@ augroup END
 
 " HTML-specific auto commands
 augroup filetype_html
-	autocmd!
+    autocmd!
 
-	autocmd FileType html set tabstop=2
-	autocmd FileType html set softtabstop=2
-	autocmd FileType html set shiftwidth=2
+    autocmd FileType html set tabstop=2
+    autocmd FileType html set softtabstop=2
+    autocmd FileType html set shiftwidth=2
 augroup filetype_html
 
 
@@ -142,26 +161,26 @@ augroup filetype_markdown
     autocmd!
     " Operate on Markdown headings
     onoremap FileType markdown ih :<c-u>execute "normal! ?\\(^==\\+$\\\|^--\\+$\\)\r:nohlsearch\rkvg_"<cr>
-    
+
     " Operate on Markdown headings and on line underneath
     onoremap FileType markdown ah :<c-u>execute "normal! ?\\(^==\\+$\\\|^--\\+$\\)\r:nohlsearch\rg_vk0"<cr>
 augroup END
- 
+
 
 " Python-specific auto commands
 augroup filetype_python
     autocmd!
     " <localleader>-c comments out code
     autocmd FileType python     nnoremap <buffer> <localleader>c I# <esc>
-    
+
     " Typing iff becomes if()
     autocmd FileType python iabbrev <buffer> iff if:<left>
-    
+
     " Typing ret becomes return ;
     autocmd FileType python iabbrev <buffer> ret return
 
-	au BufReadPre * setlocal foldmethod=indent
-	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+    au BufReadPre * setlocal foldmethod=indent
+    au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup END
 
 " Vimscript file settings ---------------------- {{{
