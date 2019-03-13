@@ -144,18 +144,18 @@ augroup END
 augroup filetype_html
     autocmd!
 
-<<<<<<< HEAD
+
     autocmd FileType html set tabstop=2
     autocmd FileType html set softtabstop=2
     autocmd FileType html set shiftwidth=2
-=======
-	autocmd FileType html set tabstop=2
-	autocmd FileType html set softtabstop=2
-	autocmd FileType html set shiftwidth=2
-	autocmd FileType html set smartindent
-	autocmd FileType html set autoindent
 
->>>>>>> 63b7788b377861ae9befdbb2b3e127d856ed1653
+    autocmd FileType html set tabstop=2
+    autocmd FileType html set softtabstop=2
+    autocmd FileType html set shiftwidth=2
+    autocmd FileType html set smartindent
+    autocmd FileType html set autoindent
+
+
 augroup filetype_html
 
 
@@ -211,13 +211,11 @@ augroup filetype_python
     " Typing ret becomes return ;
     autocmd FileType python iabbrev <buffer> ret return
 
-<<<<<<< HEAD
+
     au BufReadPre * setlocal foldmethod=indent
     au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-=======
-	" au BufReadPre * setlocal foldmethod=indent
-	" au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
->>>>>>> 63b7788b377861ae9befdbb2b3e127d856ed1653
+
+
 augroup END
 
 " Vimscript file settings ---------------------- {{{
