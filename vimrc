@@ -38,6 +38,9 @@ match ExtraWhitespace /[^\t]\t/
 " make the whitespace characters more visible!
 set listchars=tab:»·,trail:·,precedes:<,extends:>
 set list
+
+" Make vim grep like emacs's M-x occur
+nnoremap <leader>g :silent execute "grep ! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr
 " }}}
 
 " Basic Bindings/Mappings ---------------------- {{{
