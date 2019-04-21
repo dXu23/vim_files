@@ -39,8 +39,6 @@ match ExtraWhitespace /[^\t]\t/
 set listchars=tab:»·,trail:·,precedes:<,extends:>
 set list
 
-" Make vim grep like emacs's M-x occur
-nnoremap <leader>g :silent execute "grep ! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr
 " }}}
 
 " Basic Bindings/Mappings ---------------------- {{{
@@ -76,6 +74,13 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Insert quotation marks around a word
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
+" Bind cnext and cprevious
+nnoremap <leader>n :cnext<cr>
+nnoremap <leader>p :cprevious<cr>
+
+" Make vim grep like emacs's M-x occur
+nnoremap <leader>g :silent execute "grep ! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 " }}}
 
 " Visual Mode Bindings ---------------------- {{{
