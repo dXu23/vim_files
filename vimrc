@@ -57,6 +57,7 @@ inoremap <leader><c-u> <esc>viwUea
 
 " Normal Mode Bindings ---------------------- {{{
 " Move current line down one line 
+
 nnoremap <leader>- ddp
 
 " Move current line up one line 
@@ -79,8 +80,6 @@ nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>p :cprevious<cr>
 
-" Make vim grep like emacs's M-x occur
-nnoremap <leader>g :silent execute "grep ! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 " }}}
 
 " Visual Mode Bindings ---------------------- {{{
@@ -101,6 +100,12 @@ onoremap in{ :<c-u>normal! f{vi{<cr>
 
 " Operate on nearest back brackets
 onoremap il} :<c-u>normal! F}vi{<cr>
+
+" Operate on nearest front brackets
+onoremap in< :<c-u>normal! f<vi<<cr>
+
+" Operate on nearest back brackets
+onoremap il> :<c-u>normal! F>vi><cr>
 " }}}
 " }}}
 
