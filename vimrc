@@ -2,6 +2,7 @@
 
 " Basic settings ---------------------- {{{
 
+execute pathogen#infect()
 syntax on
 colorscheme desert
 filetype plugin on
