@@ -15,7 +15,11 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsListSnippets = '<c-s-tab>'
 let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
 let g:UltiSnipsSnippetDirectories = ["mySnippets"]
-" set runtimepath+=~/.vim/bundle/vim-snippets
+
+" Spellcheck
+setlocal spell
+set spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 colorscheme desert
 

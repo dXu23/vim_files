@@ -10,12 +10,13 @@ if t[2] and t[2][0] not in [' ', ',', '-', '.', '?']:
     snip.rv = ' '
 else:
     snip.rv = ''
+`$2
 endsnippet
 
 snippet dm "Math" wA
 \[
 $1
-.\] $0
+\] $0
 endsnippet
 
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
@@ -53,7 +54,7 @@ snip.rv = stripped[0:i] + "\\frac{" + stripped[i + 1: -1] + "}"
 `{$1}$0
 endsnippet
 
-snippet / "Fraction" iA
+snippet / "Fraction" i
 \\frac{${VISUAL}}{$1}$0
 endsnippet
 
