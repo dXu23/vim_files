@@ -2,10 +2,22 @@
 
 " Basic settings ---------------------- {{{
 
-execute pathogen#infect()
+
+filetype plugin indent on
 syntax on
+execute pathogen#interpose('bundle/ultisnips')
+execute pathogen#helptags()
+
+" Snippets
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsListSnippets = '<c-s-tab>'
+let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
+let g:UltiSnipsSnippetDirectories = ["mySnippets"]
+" set runtimepath+=~/.vim/bundle/vim-snippets
+
 colorscheme desert
-filetype plugin on
 
 " Search options
 set incsearch
@@ -28,6 +40,8 @@ set matchtime=4
 " set foldlevel=0
 set backspace=2
 autocmd BufNewFile * :write
+
+" Enable visible tabs and spaces
 if has ("autocmd")
     " Thanks to
     " https://www.reddit.com/r/vim/comments/4ttz0c/tabs_or_spaces/
@@ -112,6 +126,7 @@ onoremap il> :<c-u>normal! F>vi><cr>
 
 " iabbrevs for commonly mistyped words ---------------------- {{{
 iabbrev adn and
+iabbrev teh the
 iabbrev waht what
 iabbrev tehn then
 " }}}
@@ -176,6 +191,9 @@ augroup filetype_html
 " Javascript-specific auto commands
 augroup filetype_javascript
     autocmd!
+    " Javascript ultisnippets
+    autocmd FileType javascript :UltiSnipsAddFiletypes javascript
+
     " <localleader>-c comments out code
     autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
 
@@ -192,6 +210,14 @@ augroup END
 " Latex-specific auto commands
 augroup filetype_latex
     autocmd!
+    " Plug 'lervag/vimtex
+    execute pathogen#interpose('bundle/vimtex')
+    let g:tex_flavor='latex'
+    let g:vimtex_view_method='skim'
+    let g:vimtex_quickfix_mode=0
+    set conceallevel=1
+    let g:tex_conceal='abdmg'
+
     " <localleader>-c comments out code
     autocmd FileType latex nnoremap <buffer> <localleader>c I% <esc>
 
@@ -201,7 +227,6 @@ augroup filetype_latex
 	autocmd FileType latex set smartindent
 	autocmd FileType latex set autoindent
 augroup END
-
 
 augroup filetype_markdown
     autocmd!
@@ -225,8 +250,6 @@ augroup filetype_python
     " Typing ret becomes return ;
     autocmd FileType python iabbrev <buffer> ret return
 
-
-    au BufReadPre * setlocal foldmethod=indent
     au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 
 
@@ -244,4 +267,5 @@ augroup END
 set laststatus=2
 set statusline=%.20F\ -\ FileType:\ %y\ \|\ Current:\ %04l\ Total:\ %04L
 "}}}
+
 set tags=tags
