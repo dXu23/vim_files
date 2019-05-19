@@ -2,24 +2,10 @@
 
 " Basic settings ---------------------- {{{
 
-
-filetype plugin indent on
+filetype plugin on
 syntax on
 execute pathogen#interpose('bundle/ultisnips')
 execute pathogen#helptags()
-
-" Snippets
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-let g:UltiSnipsListSnippets = '<c-s-tab>'
-let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
-let g:UltiSnipsSnippetDirectories = ["mySnippets"]
-
-" Spellcheck
-setlocal spell
-set spelllang=en_us
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 colorscheme desert
 
@@ -28,11 +14,9 @@ set incsearch
 set hlsearch
 
 " Tab options
-set tabstop=4
-set shiftwidth=4
+set tabstop=8
 set softtabstop=4
-set smartindent
-set autoindent
+set shiftwidth=4
 set expandtab
 
 " Line options
@@ -41,6 +25,7 @@ set numberwidth=4
 set wrap
 set shiftround
 set matchtime=4
+
 " set foldlevel=0
 set backspace=2
 autocmd BufNewFile * :write
@@ -57,6 +42,21 @@ match ExtraWhitespace /[^\t]\t/
 " make the whitespace characters more visible!
 set listchars=tab:»·,trail:·,precedes:<,extends:>
 set list
+
+" Spellcheck
+setlocal spell
+set spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" Snippets
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsListSnippets = '<c-s-tab>'
+let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
+let g:UltiSnipsSnippetDirectories = ["mySnippets"]
+
+
 
 " }}}
 
@@ -98,6 +98,11 @@ nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 " Bind cnext and cprevious
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>p :cprevious<cr>
+
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 
 " }}}
 
@@ -185,7 +190,6 @@ augroup filetype_html
     autocmd FileType html set tabstop=2
     autocmd FileType html set softtabstop=2
     autocmd FileType html set shiftwidth=2
-    autocmd FileType html set smartindent
     autocmd FileType html set autoindent
 
 
@@ -211,26 +215,7 @@ augroup filetype_javascript
 augroup END
 
 
-" Latex-specific auto commands
-augroup filetype_latex
-    autocmd!
-    " Plug 'lervag/vimtex
-    execute pathogen#interpose('bundle/vimtex')
-    let g:tex_flavor='latex'
-    let g:vimtex_view_method='skim'
-    let g:vimtex_quickfix_mode=0
-    set conceallevel=1
-    let g:tex_conceal='abdmg'
-
-    " <localleader>-c comments out code
-    autocmd FileType latex nnoremap <buffer> <localleader>c I% <esc>
-
-	autocmd FileType latex set tabstop=2
-	autocmd FileType latex set softtabstop=2
-	autocmd FileType latex set shiftwidth=2
-	autocmd FileType latex set smartindent
-	autocmd FileType latex set autoindent
-augroup END
+let g:tex_flavor='latex'
 
 augroup filetype_markdown
     autocmd!
@@ -245,15 +230,6 @@ augroup END
 " Python-specific auto commands
 augroup filetype_python
     autocmd!
-    " <localleader>-c comments out code
-    autocmd FileType python     nnoremap <buffer> <localleader>c I# <esc>
-
-    " Typing iff becomes if()
-    autocmd FileType python iabbrev <buffer> iff if:<left>
-
-    " Typing ret becomes return ;
-    autocmd FileType python iabbrev <buffer> ret return
-
     au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 
 
@@ -262,7 +238,6 @@ augroup END
 " Vimscript file settings ---------------------- {{{
 augroup filetype_vim
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
 " }}}
