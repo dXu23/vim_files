@@ -44,7 +44,7 @@ set listchars=tab:»·,trail:·,precedes:<,extends:>
 set list
 
 " Spellcheck
-setlocal spell
+set spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
@@ -62,10 +62,10 @@ let g:UltiSnipsSnippetDirectories = ["mySnippets"]
 
 " Basic Bindings/Mappings ---------------------- {{{
 " Map Leaders ---------------------- {{{
-" mapleader 
+" ma pleader 
 let mapleader = " "
 
-" localmapleader
+" local ma pleader
 let maplocalleader = "\\"
 " }}}
 
@@ -85,17 +85,17 @@ nnoremap <leader>_ kddpk
 " Capitalize word in normal mode
 nnoremap <leader><c-u> gUaw
 
-" Easily edit .vimrc
+" Easily edit .vim RC
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
-" Easily source .vimrc
+" Easily source .vim RC
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Insert quotation marks around a word
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 
-" Bind cnext and cprevious
+" Bind next and previous
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>p :cprevious<cr>
 
@@ -103,6 +103,8 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " }}}
 
