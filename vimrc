@@ -2,10 +2,14 @@
 
 " Basic settings ---------------------- {{{
 
-filetype plugin on
-syntax on
-execute pathogen#interpose('bundle/ultisnips')
+if !exists("g:syntax on")
+    syntax enable
+endif
+
+" execute pathogen#interpose('bundle/ultisnips')
+execute pathogen#infect()
 execute pathogen#helptags()
+filetype plugin on
 
 colorscheme desert
 
@@ -26,7 +30,7 @@ set wrap
 set shiftround
 set matchtime=4
 
-" set foldlevel=0
+" Folds
 set backspace=2
 autocmd BufNewFile * :write
 
@@ -229,14 +233,6 @@ augroup filetype_markdown
 augroup END
 
 
-" Python-specific auto commands
-augroup filetype_python
-    autocmd!
-    au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-
-
-augroup END
-
 " Vimscript file settings ---------------------- {{{
 augroup filetype_vim
     autocmd!
@@ -248,5 +244,6 @@ augroup END
 set laststatus=2
 set statusline=%.20F\ -\ FileType:\ %y\ \|\ Current:\ %04l\ Total:\ %04L
 "}}}
+
 
 set tags=tags
