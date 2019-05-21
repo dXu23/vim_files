@@ -32,7 +32,6 @@ set matchtime=4
 
 " Folds
 set backspace=2
-autocmd BufNewFile * :write
 
 " Enable visible tabs and spaces
 if has ("autocmd")
