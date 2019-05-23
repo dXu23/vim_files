@@ -2,14 +2,13 @@
 
 " Basic settings ---------------------- {{{
 
-if !exists("g:syntax on")
-    syntax enable
-endif
-
 " execute pathogen#interpose('bundle/ultisnips')
 execute pathogen#infect()
 execute pathogen#helptags()
 filetype plugin on
+if !exists("g:syntax on")
+    syntax enable
+endif
 
 colorscheme desert
 

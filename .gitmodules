@@ -7,3 +7,6 @@
 [submodule "bundle/potion"]
 	path = bundle/potion
 	url = https://github.com/dXu23/Potion.git
+[submodule "bundle/vinegar"]
+	path = bundle/vinegar
+	url = https://github.com/tpope/vim-vinegar.git
