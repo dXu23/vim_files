@@ -5,7 +5,7 @@
 " execute pathogen#interpose('bundle/ultisnips')
 execute pathogen#infect()
 execute pathogen#helptags()
-filetype plugin on
+filetype plugin indent on
 if !exists("g:syntax on")
     syntax enable
 endif
