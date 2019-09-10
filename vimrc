@@ -45,10 +45,6 @@ match ExtraWhitespace /[^\t]\t/
 set listchars=tab:»·,trail:·,precedes:<,extends:>
 set list
 
-" Spellcheck
-set spell
-set spelllang=en_us
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Snippets
 let g:UltiSnipsExpandTrigger = '<tab>'
@@ -56,7 +52,7 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsListSnippets = '<c-s-tab>'
 let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
-let g:UltiSnipsSnippetDirectories = ["mySnippets"]
+let g:UltiSnipsSnippetDirectories = ["my Snippets"]
 
 
 
@@ -116,6 +112,7 @@ vnoremap <leader>" A"<esc>`<i"<esc>
 vnoremap <leader>' A'<esc>`<i'<esc>
 "}}}
 
+
 " Operator Pending Mode Bindings ---------------------- {{{
 " Operate on nearest front parentheses
 onoremap in( :<c-u>normal! f(vi(<cr>
@@ -136,6 +133,10 @@ onoremap in< :<c-u>normal! f<vi<<cr>
 onoremap il> :<c-u>normal! F>vi><cr>
 " }}}
 " }}}
+
+
+" Command line bindings
+cnoremap <expr> %%  getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " iabbrevs for commonly mistyped words ---------------------- {{{
 iabbrev adn and

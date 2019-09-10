@@ -9,6 +9,11 @@ let g:vimtex_quickfix_mode=0
 setlocal conceallevel=1
 let g:tex_conceal='abdmg'
 
+" Spellcheck
+set spell
+set spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 " comments out code
 latex nnoremap <buffer> <localleader>c I% <esc>
 
