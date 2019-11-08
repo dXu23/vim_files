@@ -12,6 +12,12 @@ endif
 
 colorscheme desert
 
+" Gui Options for vim
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+
 " Search options
 set incsearch
 set hlsearch
@@ -145,26 +151,6 @@ iabbrev waht what
 iabbrev tehn then
 " }}}
 
-" FileType-specific Settings ---------------------- {{{
-" C-specific auto commands
-augroup filetype_c
-    autocmd!
-    set cindent
-
-    " <localleader>-c comments out code
-    autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
-
-    " <localleader>-c in visual mode comments out a block
-    autocmd FileType c vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
-
-    " Typing iff becomes if()
-    autocmd FileType c iabbrev <buffer> iff if ()<left>
-    
-    " Typing ret becomes return ;
-    autocmd FileType c iabbrev <buffer> ret return;<left>
-
-augroup END
-
 augroup filetype_arduino
     autocmd!
 
@@ -184,22 +170,6 @@ augroup filetype_arduino
 augroup END
 
 " HTML-specific auto commands
-augroup filetype_html
-    autocmd!
-
-
-    autocmd FileType html set tabstop=2
-    autocmd FileType html set softtabstop=2
-    autocmd FileType html set shiftwidth=2
-
-    autocmd FileType html set tabstop=2
-    autocmd FileType html set softtabstop=2
-    autocmd FileType html set shiftwidth=2
-    autocmd FileType html set autoindent
-
-
-augroup filetype_html
-
 
 " Javascript-specific auto commands
 augroup filetype_javascript
