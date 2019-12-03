@@ -171,35 +171,7 @@ augroup END
 
 " HTML-specific auto commands
 
-" Javascript-specific auto commands
-augroup filetype_javascript
-    autocmd!
-    " Javascript ultisnippets
-    autocmd FileType javascript :UltiSnipsAddFiletypes javascript
-
-    " <localleader>-c comments out code
-    autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
-
-    " Typing iff becomes if()
-    autocmd FileType javascript iabbrev <buffer> iff if ()<left>
-
-	autocmd FileType javascript vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
-    
-    " Typing ret becomes return ;
-    autocmd FileType javascript iabbrev <buffer> ret return;<left>
-augroup END
-
-
 let g:tex_flavor='latex'
-
-augroup filetype_markdown
-    autocmd!
-    " Operate on Markdown headings
-    onoremap FileType markdown ih :<c-u>execute "normal! ?\\(^==\\+$\\\|^--\\+$\\)\r:nohlsearch\rkvg_"<cr>
-
-    " Operate on Markdown headings and on line underneath
-    onoremap FileType markdown ah :<c-u>execute "normal! ?\\(^==\\+$\\\|^--\\+$\\)\r:nohlsearch\rg_vk0"<cr>
-augroup END
 
 
 " Vimscript file settings ---------------------- {{{
