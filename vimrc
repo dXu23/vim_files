@@ -58,7 +58,7 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsListSnippets = '<c-s-tab>'
 let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
-let g:UltiSnipsSnippetDirectories = ["my Snippets"]
+let g:UltiSnipsSnippetDirectories = ["mySnippets"]
 
 
 
@@ -151,6 +151,39 @@ iabbrev waht what
 iabbrev tehn then
 " }}}
 
+" Code taken from
+" http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/
+" for sane directories
+
+function! FollowSymlink()
+    let current_file = expand('%:p')
+    " Check whether file is symlink
+    if getftype(current_file) == 'link'
+        " if it is a symlink, resolve to actual file path
+        " and open the actual file
+        let actual_file = resolve(current_file)
+        silent !execute 'file ' . actual_file
+    end
+endfunction
+
+function! SetProjectRoot()
+    " default to the current file's directory
+    lcd %:p:h
+    let git_dir = system("git rev-parse --show-toplevel")
+    " See if the command output starts with 'fatal' (if it does, not
+    " in a git repo)
+    let is_not_git_dir = matchstr(git_dir, '^fatal:.*')
+    " if git project, change local directory to git project root
+    if empty(is_not_git_dir)
+        lcd `=git_dir`
+    endif
+endfunction
+
+autocmd BufRead *
+    \ call FollowSymlink() |
+    \ call SetProjectRoot()
+
+
 augroup filetype_arduino
     autocmd!
 
@@ -171,7 +204,6 @@ augroup END
 
 " HTML-specific auto commands
 
-let g:tex_flavor='latex'
 
 
 " Vimscript file settings ---------------------- {{{
