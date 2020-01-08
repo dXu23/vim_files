@@ -64,7 +64,7 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsListSnippets = '<c-s-tab>'
 let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
-let g:UltiSnipsSnippetDirectories = ["my Snippets"]
+let g:UltiSnipsSnippetDirectories = ["mySnippets"]
 
 
 
@@ -157,6 +157,39 @@ iabbrev waht what
 iabbrev tehn then
 " }}}
 
+" Code taken from
+" http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/
+" for sane directories
+
+function! FollowSymlink()
+    let current_file = expand('%:p')
+    " Check whether file is symlink
+    if getftype(current_file) == 'link'
+        " if it is a symlink, resolve to actual file path
+        " and open the actual file
+        let actual_file = resolve(current_file)
+        silent !execute 'file ' . actual_file
+    end
+endfunction
+
+function! SetProjectRoot()
+    " default to the current file's directory
+    lcd %:p:h
+    let git_dir = system("git rev-parse --show-toplevel")
+    " See if the command output starts with 'fatal' (if it does, not
+    " in a git repo)
+    let is_not_git_dir = matchstr(git_dir, '^fatal:.*')
+    " if git project, change local directory to git project root
+    if empty(is_not_git_dir)
+        lcd `=git_dir`
+    endif
+endfunction
+
+autocmd BufRead *
+    \ call FollowSymlink() |
+    \ call SetProjectRoot()
+
+
 augroup filetype_arduino
     autocmd!
 
@@ -177,35 +210,6 @@ augroup END
 
 " HTML-specific auto commands
 
-" Javascript-specific auto commands
-augroup filetype_javascript
-    autocmd!
-    " Javascript ultisnippets
-    autocmd FileType javascript :UltiSnipsAddFiletypes javascript
-
-    " <localleader>-c comments out code
-    autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
-
-    " Typing iff becomes if()
-    autocmd FileType javascript iabbrev <buffer> iff if ()<left>
-
-	autocmd FileType javascript vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
-    
-    " Typing ret becomes return ;
-    autocmd FileType javascript iabbrev <buffer> ret return;<left>
-augroup END
-
-
-let g:tex_flavor='latex'
-
-augroup filetype_markdown
-    autocmd!
-    " Operate on Markdown headings
-    onoremap FileType markdown ih :<c-u>execute "normal! ?\\(^==\\+$\\\|^--\\+$\\)\r:nohlsearch\rkvg_"<cr>
-
-    " Operate on Markdown headings and on line underneath
-    onoremap FileType markdown ah :<c-u>execute "normal! ?\\(^==\\+$\\\|^--\\+$\\)\r:nohlsearch\rg_vk0"<cr>
-augroup END
 
 
 " Vimscript file settings ---------------------- {{{
