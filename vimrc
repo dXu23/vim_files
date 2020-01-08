@@ -228,4 +228,4 @@ set statusline=%.20F\ -\ FileType:\ %y\ \|\ Current:\ %04l\ Total:\ %04L
 set tags=tags
 
 " FZF
-nnoremap <C-p> :<C-u>F:F<CR>
+nnoremap <C-p> :<C-u>FZF<CR>
