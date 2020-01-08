@@ -2,9 +2,15 @@
 
 " Basic settings ---------------------- {{{
 
-" execute pathogen#interpose('bundle/ultisnips')
-execute pathogen#infect()
-execute pathogen#helptags()
+packadd minpac
+call minpac#init()
+
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-scriptease', {'type': 'opt'})
+
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
+
 filetype plugin indent on
 if !exists("g:syntax on")
     syntax enable
