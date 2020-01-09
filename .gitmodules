@@ -13,3 +13,6 @@
 [submodule "pack/minpac/opt/minpac"]
 	path = pack/minpac/opt/minpac
 	url = https://github.com/k-takata/minpac.git
+[submodule "pack/bundle/start/fzf"]
+	path = pack/bundle/start/fzf
+	url = https://github.com/junegunn/fzf.git
