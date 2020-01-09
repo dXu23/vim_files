@@ -1,12 +1,15 @@
 [submodule "bundle/ultisnips"]
-	path = bundle/ultisnips
+	path = pack/bundle/start/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
 [submodule "bundle/vimtex"]
-	path = bundle/vimtex
+	path = pack/bundle/start/vimtex
 	url = https://github.com/lervag/vimtex.git
 [submodule "bundle/potion"]
 	path = bundle/potion
 	url = https://github.com/dXu23/Potion.git
 [submodule "bundle/vinegar"]
-	path = bundle/vinegar
+	path = pack/bundle/start/vinegar
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule "pack/minpac/opt/minpac"]
+	path = pack/minpac/opt/minpac
+	url = https://github.com/k-takata/minpac.git
