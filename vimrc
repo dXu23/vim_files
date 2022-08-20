@@ -2,14 +2,7 @@
 
 " Basic settings ---------------------- {{{
 
-packadd minpac
-call minpac#init()
-
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('tpope/vim-scriptease', {'type': 'opt'})
-
-command! PackUpdate call minpac#update()
-command! PackClean call minpac#clean()
+source ~/.vim/packages.vim
 
 filetype plugin indent on
 if !exists("g:syntax on")
@@ -66,8 +59,6 @@ let g:UltiSnipsListSnippets = '<c-s-tab>'
 let g:UltiSnipsSnippetsDir = '~/.vim/mySnippets'
 let g:UltiSnipsSnippetDirectories = ["mySnippets"]
 
-
-
 " }}}
 
 " Basic Bindings/Mappings ---------------------- {{{
@@ -75,7 +66,7 @@ let g:UltiSnipsSnippetDirectories = ["mySnippets"]
 " ma pleader 
 let mapleader = " "
 
-" local ma pleader
+" local map leader
 let maplocalleader = "\\"
 " }}}
 
@@ -190,28 +181,6 @@ autocmd BufRead *
     \ call SetProjectRoot()
 
 
-augroup filetype_arduino
-    autocmd!
-
-    " <localleader>-c comments out code
-    autocmd FileType arduino nnoremap <buffer> <localleader>c I// <esc>
-
-	" <localleader>-c in visual mode comments out a block
-	autocmd FileType arduino vnoremap <buffer> <localleader>c A<cr>*/<esc>'<O/*<esc>
-	" A */<esc>'<i/* <esc>
-    
-    " Typing iff becomes if()
-    autocmd FileType arduino iabbrev <buffer> iff if ()<left>
-    
-    " Typing ret becomes return ;
-    autocmd FileType arduino iabbrev <buffer> ret return;<left>
-
-augroup END
-
-" HTML-specific auto commands
-
-
-
 " Vimscript file settings ---------------------- {{{
 augroup filetype_vim
     autocmd!
@@ -229,3 +198,4 @@ set tags=tags
 
 " FZF
 nnoremap <C-p> :<C-u>FZF<CR>
+
