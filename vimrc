@@ -47,7 +47,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /[^\t]\t/
 
 " make the whitespace characters more visible!
-set listchars=tab:»·,trail:·,precedes:<,extends:>
+set listchars=tab:»·,eol:↲,trail:·,precedes:<,extends:>
 set list
 
 
