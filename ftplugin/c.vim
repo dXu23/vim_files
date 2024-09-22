@@ -10,6 +10,3 @@ vnoremap <buffer> <localleader>c A */<esc>'<i/* <esc>
 " Typing iff becomes if()
 iabbrev <buffer> iff if ()<left>
 
-" Typing ret becomes return ;
-iabbrev <buffer> ret return;<left>
-
