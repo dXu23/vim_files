@@ -11,13 +11,23 @@ if !exists("g:syntax on")
     syntax enable
 endif
 
-colorscheme desert
-
 # Gui Options for vim
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
+
+set history=200
+set ruler
+set showcmd
+set wildmenu
+set ttimeout
+set ttimeoutlen=100
+set display=truncate
+
+if has('mouse')
+    set mouse=a
+endif
 
 # Search options
 set incsearch
@@ -40,13 +50,14 @@ set matchtime=4
 set backspace=2
 
 # Enable visible tabs and spaces
-if has("autocmd")
-    # Thanks to
-    # https://www.reddit.com/r/vim/comments/4ttz0c/tabs_or_spaces/
-    autocmd colorScheme * highlight ExtraWhiteSpace ctermbg=red guibg=red
-endif
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /[^\t]\t/
+# Thanks to
+# https://www.reddit.com/r/vim/comments/4ttz0c/tabs_or_spaces/
+# if has("autocmd")
+    # autocmd colorScheme * highlight ExtraWhiteSpace ctermbg=red guibg=red
+# endif
+
+# highlight ExtraWhitespace ctermbg=red guibg=red
+# match ExtraWhitespace /[^\t]\t/
 
 # make the whitespace characters more visible!
 set listchars=tab:»·,eol:↲,trail:·,precedes:<,extends:>
@@ -72,9 +83,13 @@ g:mapleader = " "
 g:maplocalleader = "\\"
 # }}}
 
+map Q gq
+
 # Insert Mode Bindings ---------------------- {{{
 # Capitalize word in insert mode
 inoremap <leader><c-u> <esc>viwUea
+
+inoremap <C-U> <C-G>u<C-U>
 # }}}
 
 # Normal Mode Bindings ---------------------- {{{
@@ -94,18 +109,24 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 # Easily source .vim RC
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+# Insert curly braces around visual mode text
+vnoremap <leader>c A }<esc>'<i{ <esc>
+
+# Insert parenthesis around visual mode text
+vnoremap <leader>p A )<esc>'<i( <esc>
+
 # Insert quotation marks around a word
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 
 # Bind next and previous
-nnoremap <leader>n :cnext<cr>
-nnoremap <leader>p :cprevious<cr>
+# nnoremap <leader>n :cnext<cr>
+# nnoremap <leader>p :cprevious<cr>
 
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
+# nnoremap <silent> [b :bprevious<CR>
+# nnoremap <silent> ]b :bnext<CR>
+# nnoremap <silent> [B :bfirst<CR>
+# nnoremap <silent> ]B :blast<CR>
 
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
@@ -155,24 +176,24 @@ iabbrev tehn then
 # for sane directories
 
 def FollowSymlink()
-    current_file = expand('%:p')
-    " Check whether file is symlink
+    var current_file = expand('%:p')
+    # Check whether file is symlink
     if getftype(current_file) == 'link'
-        " if it is a symlink, resolve to actual file path
-        " and open the actual file
-        actual_file = resolve(current_file)
+        # if it is a symlink, resolve to actual file path
+        # and open the actual file
+        var actual_file = resolve(current_file)
         silent !execute 'file ' . actual_file
-    end
+    endif
 enddef
 
 def SetProjectRoot()
-    " default to the current file's directory
+    # default to the current file's directory
     lcd %:p:h
-    git_dir = system("git rev-parse --show-toplevel")
-    " See if the command output starts with 'fatal' (if it does, not
-    " in a git repo)
-    is_not_git_dir = matchstr(git_dir, '^fatal:.*')
-    " if git project, change local directory to git project root
+    var git_dir = system("git rev-parse --show-toplevel")
+    # See if the command output starts with 'fatal' (if it does, not
+    # in a git repo)
+    var is_not_git_dir = matchstr(git_dir, '^fatal:.*')
+    # if git project, change local directory to git project root
     if empty(is_not_git_dir)
         lcd `=git_dir`
     endif
