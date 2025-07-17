@@ -1,19 +1,21 @@
+vim9script
+
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
-function! s:GrepOperator(type)
-    let saved_unnamed_register = @@
+def GrepOperator(type: string)
+    var saved_unnamed_register = getreg("")
 
-    if a:type ==# 'v'
+    if type ==# 'v'
         normal! `<v`>y
-    elseif a:type ==# 'char'
+    elseif type ==# 'char'
         normal! `[v`]y
     else
         return
     endif
 
-    silent execute "grep! -R " . shellescape(@@) . " ."
+    silent execute "grep! -R " .. shellescape(getreg("")) .. " ."
     copen
 
-    let @@ = saved_unnamed_register
-endfunction
+    setreg("", saved_unnamed_register)
+enddef
